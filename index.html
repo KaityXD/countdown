@@ -7,15 +7,48 @@
     body {
       font-family: 'Arial', sans-serif;
       text-align: center;
-      background-color: pink;
+      background-color: #61a0a8; /* Teal Blue */
+      color: #fff; /* White text for better contrast */
       padding: 50px;
+      margin: 0;
+      overflow: hidden; /* Hide overflow to prevent horizontal scrollbar */
+    }
+
+    h1 {
+      color: #f0f0f0; /* Light Gray */
+      margin-bottom: 20px;
     }
 
     #countdown {
       font-size: 2em;
       font-weight: bold;
-      color: #333;
       margin-top: 20px;
+      transition: color 0.5s ease-in-out;
+    }
+
+    #countdown:hover {
+      color: #f5a623; /* Yellow-Orange for hover effect */
+    }
+
+    .snowflake {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: #fff; /* White snowflake color */
+      border-radius: 50%;
+      opacity: 0.8; /* Slightly transparent */
+      animation: snowfall linear infinite;
+      animation-duration: 5s; /* Slow down the snowfall */
+      animation-delay: calc(-1 * var(--delay)); /* Add delay for staggered start */
+    }
+
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-10vh);
+      }
+      100% {
+        transform: translateY(110vh);
+      }
     }
   </style>
   <title>Countdown to 2024</title>
@@ -27,7 +60,7 @@
   <script>
     function updateCountdown() {
       const currentDate = new Date();
-      const targetDate = new Date("January 1, 2024 00:00:00 GMT+00:00");
+      const targetDate = new Date("December 31, 2023 00:00:00 GMT+00:00");
 
       const timeDifference = targetDate - currentDate;
 
@@ -41,5 +74,22 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
+
+  <!-- Snowflakes -->
+  <script>
+    // Create snowflakes dynamically
+    for (let i = 0; i < 50; i++) {
+      createSnowflake();
+    }
+
+    function createSnowflake() {
+      const snowflake = document.createElement("div");
+      snowflake.className = "snowflake";
+      snowflake.style.left = `${Math.random() * 100}vw`; /* Random horizontal position */
+      snowflake.style.animationDelay = `${Math.random() * 5}s`; /* Random delay for staggered start */
+      document.body.appendChild(snowflake);
+    }
+  </script>
 </body>
-</html>
+  </html>
+  
